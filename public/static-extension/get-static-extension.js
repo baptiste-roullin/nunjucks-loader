@@ -1,9 +1,2 @@
-"use strict";
-
-require("core-js/modules/es.object.define-property.js");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _StaticExtension = require("./StaticExtension");
-var _default = exports["default"] = new _StaticExtension.StaticExtension();
+import { StaticExtension } from './StaticExtension';
+export default new StaticExtension();

@@ -1,26 +1,18 @@
-"use strict";
-
-require("core-js/modules/es.object.define-property.js");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = runtime;
-require("core-js/modules/es.object.to-string.js");
-require("core-js/modules/es.promise.js");
-require("core-js/modules/es.array.some.js");
-require("core-js/modules/es.object.values.js");
-var _nunjucksSlim = _interopRequireDefault(require("nunjucks/browser/nunjucks-slim"));
-var _WebpackPrecompiledLoader = require("./WebpackPrecompiledLoader");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-function runtime(options, _ref) {
+import "core-js/modules/es.object.to-string.js";
+import "core-js/modules/es.promise.js";
+import "core-js/modules/es.array.some.js";
+import "core-js/modules/es.object.values.js";
+import nunjucks from 'nunjucks/browser/nunjucks-slim';
+import { WebpackPrecompiledLoader } from './WebpackPrecompiledLoader';
+export default function runtime(options, _ref) {
   var globals = _ref.globals,
     extensions = _ref.extensions,
     filters = _ref.filters,
     precompiled = _ref.templates;
   if (options.jinjaCompat === true) {
-    _nunjucksSlim["default"].installJinjaCompat();
+    nunjucks.installJinjaCompat();
   }
-  var env = new _nunjucksSlim["default"].Environment(new _WebpackPrecompiledLoader.WebpackPrecompiledLoader(precompiled), options);
+  var env = new nunjucks.Environment(new WebpackPrecompiledLoader(precompiled), options);
   for (var globalName in globals) {
     if (!Object.prototype.hasOwnProperty.call(globals, globalName)) {
       continue;
