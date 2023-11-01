@@ -1,3 +1,5 @@
+import "core-js/modules/es.array.find.js";
+import "core-js/modules/es.object.to-string.js";
 /**
  * @template TNode
  * @param {TNode[]}                   list
@@ -5,14 +7,13 @@
  * @returns {function(Object<TNode>): ?TNode}
  */
 export function toListItem(list, callback) {
-    /**
-     * @template TNode
-     * @param {Object<TNode>} item
-     * @returns {?TNode}
-     */
-    function findItem(item) {
-        return list.find(callback(item));
-    }
-
-    return findItem;
+  /**
+   * @template TNode
+   * @param {Object<TNode>} item
+   * @returns {?TNode}
+   */
+  function findItem(item) {
+    return list.find(callback(item));
+  }
+  return findItem;
 }

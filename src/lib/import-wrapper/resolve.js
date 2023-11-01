@@ -1,10 +1,8 @@
+import "core-js/modules/es.array.concat.js";
 import path from 'path';
-
-import {ImportLiteral} from './ImportLiteral';
-import {ImportSymbol} from './ImportSymbol';
-import {normalizeTrailingSlash} from './normalize-trailing-slash';
-
-
+import { ImportLiteral } from "./ImportLiteral.js";
+import { ImportSymbol } from "./ImportSymbol.js";
+import { normalizeTrailingSlash } from "./normalize-trailing-slash.js";
 /**
  * Joins template import with another path
  *
@@ -12,19 +10,13 @@ import {normalizeTrailingSlash} from './normalize-trailing-slash';
  * @param {ImportWrapper} templateImport
  */
 export function resolve(prependPath, templateImport) {
-    let _templateImport = templateImport.concat();
-    let firstPart = _templateImport.shift();
-    if (firstPart instanceof ImportSymbol) {
-        _templateImport.unshift(firstPart);
-        firstPart = '';
-    }
-
-    const filePath = normalizeTrailingSlash(
-        path.resolve(prependPath, firstPart.valueOf()),
-        firstPart
-    );
-
-    _templateImport.unshift(new ImportLiteral(filePath));
-
-    return _templateImport;
+  var _templateImport = templateImport.concat();
+  var firstPart = _templateImport.shift();
+  if (firstPart instanceof ImportSymbol) {
+    _templateImport.unshift(firstPart);
+    firstPart = '';
+  }
+  var filePath = normalizeTrailingSlash(path.resolve(prependPath, firstPart.valueOf()), firstPart);
+  _templateImport.unshift(new ImportLiteral(filePath));
+  return _templateImport;
 }

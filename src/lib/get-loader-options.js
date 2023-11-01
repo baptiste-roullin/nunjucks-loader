@@ -1,29 +1,22 @@
-import schema from './schema.json' with { type: "json" }
+import schema from "./schema.json" with { type: "json" };
 
 export function getLoaderOptions(loader, callback) {
-    let loaderOptions
-
-    try {
-        loaderOptions = loader.getOptions(schema)
-    } catch (e) {
-        callback(e)
-
-        return null
+  var loaderOptions
+  try {
+    loaderOptions = loader.getOptions(schema)
+  } catch (e) {
+    callback(e)
+    return null
+  }
+  for (var key in schema.properties) {
+    if (!Object.prototype.hasOwnProperty.call(schema.properties, key) || key in loaderOptions) {
+      continue
     }
-
-    for (const key in schema.properties) {
-        if (!Object.prototype.hasOwnProperty.call(schema.properties, key) ||
-            key in loaderOptions) {
-            continue
-        }
-
-        const schemaProp = schema.properties[key]
-        if (!('default' in schemaProp)) {
-            continue
-        }
-
-        loaderOptions[key] = schemaProp['default']
+    var schemaProp = schema.properties[key]
+    if (!('default' in schemaProp)) {
+      continue
     }
-
-    return loaderOptions
+    loaderOptions[key] = schemaProp['default']
+  }
+  return loaderOptions
 }

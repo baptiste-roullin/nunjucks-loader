@@ -1,8 +1,5 @@
 import nunjucks from 'nunjucks';
-
-import {ImportWrapper} from '../import-wrapper/ImportWrapper';
-
-
+import { ImportWrapper } from "../import-wrapper/ImportWrapper.js";
 /**
  * Parse `Add` value to expression
  * @example
@@ -13,32 +10,26 @@ import {ImportWrapper} from '../import-wrapper/ImportWrapper';
  * @returns {ImportWrapper}
  */
 export function getAddNodeValue(node) {
-    if (!(node instanceof nunjucks.nodes.Add)) {
-        throw new TypeError('Wrong node type');
+  if (!(node instanceof nunjucks.nodes.Add)) {
+    throw new TypeError('Wrong node type');
+  }
+  var stack = [node.left, node.right];
+  var value = new ImportWrapper();
+  while (stack.length) {
+    var _node = stack.shift();
+    if (_node instanceof nunjucks.nodes.Add) {
+      stack.unshift(_node.left, _node.right);
+      continue;
     }
-
-    const stack = [node.left, node.right];
-    const value = new ImportWrapper();
-
-    while (stack.length) {
-        const node = stack.shift();
-        if (node instanceof nunjucks.nodes.Add) {
-            stack.unshift(node.left, node.right);
-            continue;
-        }
-
-        if (node instanceof nunjucks.nodes.Literal) {
-            value.addLiteral(node.value);
-            continue;
-        }
-
-        if (node instanceof nunjucks.nodes.Symbol) {
-            value.addSymbol(node.value);
-            continue;
-        }
-
-        throw new TypeError('Unsupported node signature');
+    if (_node instanceof nunjucks.nodes.Literal) {
+      value.addLiteral(_node.value);
+      continue;
     }
-
-    return value;
+    if (_node instanceof nunjucks.nodes.Symbol) {
+      value.addSymbol(_node.value);
+      continue;
+    }
+    throw new TypeError('Unsupported node signature');
+  }
+  return value;
 }

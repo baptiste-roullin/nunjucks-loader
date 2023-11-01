@@ -1,8 +1,5 @@
 import nunjucks from 'nunjucks';
-
-import {localVarWrapper as precompileWrapper} from './local-var-wrapper';
-
-
+import { localVarWrapper as precompileWrapper } from "./local-var-wrapper.js";
 /**
  * @param {string}      source
  * @param {string}      fileName
@@ -10,9 +7,9 @@ import {localVarWrapper as precompileWrapper} from './local-var-wrapper';
  * @returns {string} Precompiled template, assigned to given `fileName`
  */
 export function precompileToLocalVar(source, fileName, env) {
-    return nunjucks.precompileString(source, {
-        env,
-        name: fileName,
-        wrapper: precompileWrapper
-    });
+  return nunjucks.precompileString(source, {
+    env: env,
+    name: fileName,
+    wrapper: precompileWrapper
+  });
 }

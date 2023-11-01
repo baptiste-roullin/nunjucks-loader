@@ -8,9 +8,5 @@ import nunjucks from 'nunjucks';
  * @returns {nunjucks.nodes.Root}
  */
 export function getNodes(source, extensions, options) {
-    return nunjucks.parser.parse(
-        source,
-        extensions,
-        options
-    );
+  return nunjucks.parser.parse(source, extensions, options);
 }

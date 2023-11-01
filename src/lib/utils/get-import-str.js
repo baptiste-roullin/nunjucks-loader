@@ -1,3 +1,4 @@
+import "core-js/modules/es.array.concat.js";
 /**
  * @param {string} path
  * @param {boolean} [esModule]
@@ -5,40 +6,33 @@
  * @returns {function(string, string): string}
  */
 export function getImportStr(path, esModule, isDynamic) {
-    const isES = esModule === true
+  var isES = esModule === true;
 
-    /**
-     * @param {string} [name] Variable name to be used
-     * @param {string} [sym]  Module symbol to be imported
-     * @returns {string}
-     */
-    function getImportInvocationString(name, sym) {
-        if (isDynamic && isES) {
-            return `import(${path});`
-        }
-
-        if (name && sym && isES) {
-            return `import {${sym} as ${name}} from ${path};`
-        }
-
-        if (name && isES) {
-            return `import ${name} from ${path};`
-        }
-
-        if (name && sym) {
-            return `const ${name} = require(${path}).${sym};`
-        }
-
-        if (name) {
-            return `const ${name} = require(${path});`
-        }
-
-        if (isDynamic) {
-            return `require(${path});`
-        }
-
-        throw new Error('Import var name required')
+  /**
+   * @param {string} [name] Variable name to be used
+   * @param {string} [sym]  Module symbol to be imported
+   * @returns {string}
+   */
+  function getImportInvocationString(name, sym) {
+    if (isDynamic && isES) {
+      return "import(".concat(path, ");");
     }
-
-    return getImportInvocationString
+    if (name && sym && isES) {
+      return "import {".concat(sym, " as ").concat(name, "} from ").concat(path, ";");
+    }
+    if (name && isES) {
+      return "import ".concat(name, " from ").concat(path, ";");
+    }
+    if (name && sym) {
+      return "const ".concat(name, " = require(").concat(path, ").").concat(sym, ";");
+    }
+    if (name) {
+      return "const ".concat(name, " = require(").concat(path, ");");
+    }
+    if (isDynamic) {
+      return "require(".concat(path, ");");
+    }
+    throw new Error('Import var name required');
+  }
+  return getImportInvocationString;
 }
