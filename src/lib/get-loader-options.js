@@ -1,4 +1,4 @@
-import schema from './schema.json' assert {type: "json"}
+import schema from './schema.json' with { type: "json" }
 
 export function getLoaderOptions(loader, callback) {
     let loaderOptions

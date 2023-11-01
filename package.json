@@ -10,7 +10,6 @@
   ],
   "scripts": {
     "build:cjs": "npx babel src --out-dir=. --copy-files --no-copy-ignored --ignore 'src/**/*.spec.js'",
-    "build": "npm run build:clean && npm run build:cjs",
     "pretest": "rm -rf test/.coverage && npm run lint",
     "test": "jest",
     "posttest": "rm -rf ./test/bundles/",
