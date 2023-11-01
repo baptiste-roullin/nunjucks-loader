@@ -8,9 +8,7 @@ import { loadDependencies } from './precompile/load-dependencies.js'
 import { precompileToLocalVar } from './precompile/precompile-to-local-var.js'
 
 
-import staticExtensionPath from
-    '../public/static-extension/get-static-extension'
-
+import staticExtensionPath from '../public/static-extension/get-static-extension.js'
 
 export async function doTransform(source, loaderContext, {
     resourcePathImport,
