@@ -1,10 +1,10 @@
-import fs from 'fs';
-import {promisify} from 'util';
+import fs from 'fs'
+import { promisify } from 'util'
 
-import {getGlob} from './get-glob';
+import { getGlob } from './get-glob.js'
 
 
-const fsAccess = promisify(fs.access);
+const fsAccess = promisify(fs.access)
 
 /**
  * @param {ImportWrapper} path
@@ -12,17 +12,17 @@ const fsAccess = promisify(fs.access);
  */
 async function isExists(path) {
     if (path.isDynamic()) {
-        const glob = await getGlob();
-        const files = await glob(path.toGlob());
+        const glob = await getGlob()
+        const files = await glob(path.toGlob())
 
-        return files.length > 0;
+        return files.length > 0
     }
 
     try {
-        await fsAccess(path.toString());
-        return true;
+        await fsAccess(path.toString())
+        return true
     } catch (exception) {
-        return false;
+        return false
     }
 }
 
@@ -32,11 +32,11 @@ async function isExists(path) {
  */
 export async function getFirstExistedPath(paths) {
     for (const path of paths) {
-        const exist = await isExists(path);
+        const exist = await isExists(path)
         if (exist) {
-            return path;
+            return path
         }
     }
 
-    throw new Error('Path not found');
+    throw new Error('Path not found')
 }

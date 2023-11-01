@@ -1,10 +1,10 @@
-import {isUniqueObject} from './is-unique-object';
+import { isUniqueObject } from './is-unique-object.js'
 
 
-export const isUniqueAsset = isUniqueObject(getAssetIndex);
+export const isUniqueAsset = isUniqueObject(getAssetIndex)
 
 function getAssetIndex(list, item) {
-    return list.findIndex(function(listItem) {
-        return listItem.toString() === item.toString();
-    });
+    return list.findIndex(function (listItem) {
+        return listItem.toString() === item.toString()
+    })
 }

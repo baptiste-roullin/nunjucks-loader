@@ -1,4 +1,4 @@
-import {resolveSearchPaths} from './resolve-search-paths';
+import { resolveSearchPaths } from './resolve-search-paths.js'
 
 /**
  * @param {ImportWrapper[]} paths
@@ -6,10 +6,10 @@ import {resolveSearchPaths} from './resolve-search-paths';
  * @returns {Array.<[ImportWrapper, ImportWrapper[]]>}
  */
 export function getPossiblePaths(paths, searchPaths) {
-    return paths.map(function(possiblePath) {
+    return paths.map(function (possiblePath) {
         return [
             possiblePath,
             resolveSearchPaths(possiblePath, searchPaths)
-        ];
-    });
+        ]
+    })
 }

@@ -1,9 +1,9 @@
-import {getPathRemover} from './get-path-remover';
-import {sortBy} from './sort-by';
+import { getPathRemover } from './get-path-remover.js'
+import { sortBy } from './sort-by.js'
 
 
-const isWindows = process.platform === 'win32';
-const sortByLength = sortBy('length');
+const isWindows = process.platform === 'win32'
+const sortByLength = sortBy('length')
 
 /**
  * @param {string}   resourcePath
@@ -11,12 +11,12 @@ const sortByLength = sortBy('length');
  * @returns {string}
  */
 export function getImportPath(resourcePath, searchPaths) {
-    const removeSearchPath = getPathRemover(resourcePath);
-    let [importPath] = searchPaths.map(removeSearchPath).sort(sortByLength);
+    const removeSearchPath = getPathRemover(resourcePath)
+    let [importPath] = searchPaths.map(removeSearchPath).sort(sortByLength)
 
     if (isWindows) {
-        importPath = importPath.replace(/\\/g, '/');
+        importPath = importPath.replace(/\\/g, '/')
     }
 
-    return importPath;
+    return importPath
 }
