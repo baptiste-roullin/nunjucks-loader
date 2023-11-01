@@ -3,10 +3,10 @@ import "core-js/modules/es.array.concat.js";
 import "core-js/modules/es.array.includes.js";
 import "core-js/modules/es.string.includes.js";
 import path from 'path';
-import { ERROR_MODULE_NOT_FOUND } from './lib/constants';
-import { doTransform } from './lib/do-transform';
-import { getLoaderOptions } from './lib/get-loader-options';
-import { getImportPath } from './lib/utils/get-import-path';
+import { ERROR_MODULE_NOT_FOUND } from './lib/constants.js';
+import { doTransform } from './lib/do-transform.js';
+import { getLoaderOptions } from './lib/get-loader-options.js';
+import { getImportPath } from './lib/utils/get-import-path.js';
 export default function nunjucksLoader(source) {
   var callback = this.async();
   var options = getLoaderOptions(this, callback);
