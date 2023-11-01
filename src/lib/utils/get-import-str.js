@@ -5,7 +5,7 @@
  * @returns {function(string, string): string}
  */
 export function getImportStr(path, esModule, isDynamic) {
-    const isES = esModule === true;
+    const isES = esModule === true
 
     /**
      * @param {string} [name] Variable name to be used
@@ -14,15 +14,15 @@ export function getImportStr(path, esModule, isDynamic) {
      */
     function getImportInvocationString(name, sym) {
         if (isDynamic && isES) {
-            return `import(${path});`;
+            return `import(${path});`
         }
 
         if (name && sym && isES) {
-            return `import {${sym} as ${name}} from ${path};`;
+            return `import {${sym} as ${name}} from ${path};`
         }
 
         if (name && isES) {
-            return `import ${name} from ${path};`;
+            return `import ${name} from ${path};`
         }
 
         if (name && sym) {
@@ -30,15 +30,15 @@ export function getImportStr(path, esModule, isDynamic) {
         }
 
         if (name) {
-            return `const ${name} = require(${path});`;
+            return `const ${name} = require(${path});`
         }
 
         if (isDynamic) {
-            return `require(${path});`;
+            return `require(${path});`
         }
 
-        throw new Error('Import var name required');
+        throw new Error('Import var name required')
     }
 
-    return getImportInvocationString;
+    return getImportInvocationString
 }
