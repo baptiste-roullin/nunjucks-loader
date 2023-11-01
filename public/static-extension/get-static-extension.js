@@ -1,2 +1,2 @@
-import { StaticExtension } from './StaticExtension';
+import { StaticExtension } from './StaticExtension.js';
 export default new StaticExtension();

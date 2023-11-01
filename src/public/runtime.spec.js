@@ -1,35 +1,35 @@
-import runtime from './runtime';
+import runtime from './runtime.js'
 
-describe('render', function() {
-    test('should render template', function() {
-        const contextSpy = jest.fn();
+describe('render', function () {
+    test('should render template', function () {
+        const contextSpy = jest.fn()
 
         const precompiled = {
             root(env, context, frame, runtime, cb) {
-                contextSpy(context.ctx);
+                contextSpy(context.ctx)
 
-                cb(null, 'Foo');
+                cb(null, 'Foo')
             }
-        };
+        }
         const tpl = runtime({}, {
             templates: {
                 'foo.njk': precompiled
             }
-        });
+        })
 
         expect(tpl.render('foo.njk', {
             username: 'Joe Doe'
-        })).toBe('Foo');
+        })).toBe('Foo')
         expect(contextSpy).toHaveBeenCalledWith(
             expect.objectContaining({
                 username: 'Joe Doe'
             })
-        );
-    });
-});
+        )
+    })
+})
 
-describe('isAsync', function() {
-    test('should return true with async filters', function() {
+describe('isAsync', function () {
+    test('should return true with async filters', function () {
         const tpl = runtime({}, {
             filters: {
                 foo: {
@@ -37,8 +37,8 @@ describe('isAsync', function() {
                     module: ''
                 }
             }
-        });
+        })
 
-        expect(tpl.isAsync()).toBe(true);
-    });
-});
+        expect(tpl.isAsync()).toBe(true)
+    })
+})

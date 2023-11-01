@@ -1,4 +1,4 @@
-import runtime from './runtime';
+import runtime from './runtime.js';
 describe('render', function () {
   test('should render template', function () {
     var contextSpy = jest.fn();

@@ -1,4 +1,4 @@
-import { getRegexMatches } from './get-regex-matches';
+import { getRegexMatches } from './get-regex-matches.js';
 it('should return matches', function () {
   var matches = getRegexMatches('foobar', /f([^b]+)b([^b]+)/g);
   expect(matches).toEqual(['oo', 'ar']);

@@ -1,24 +1,24 @@
-import {WebpackPrecompiledLoader} from './WebpackPrecompiledLoader';
+import { WebpackPrecompiledLoader } from './WebpackPrecompiledLoader.js'
 
 const precompiledTemplateMock = {
-    root() {}
-};
+    root() { }
+}
 
-describe('WebpackPrecompiledLoader', function() {
-    describe('getSource', function() {
-        describe('template not found', function() {
-            test('not precompiled', function() {
-                const loader = new WebpackPrecompiledLoader();
+describe('WebpackPrecompiledLoader', function () {
+    describe('getSource', function () {
+        describe('template not found', function () {
+            test('not precompiled', function () {
+                const loader = new WebpackPrecompiledLoader()
 
-                expect(loader.getSource('foo.njk')).toBeNull();
-            });
-        });
+                expect(loader.getSource('foo.njk')).toBeNull()
+            })
+        })
 
-        describe('template return', function() {
-            test('returns precompiled template', function() {
+        describe('template return', function () {
+            test('returns precompiled template', function () {
                 const loader = new WebpackPrecompiledLoader({
                     'foo.njk': precompiledTemplateMock
-                });
+                })
 
                 expect(loader.getSource('foo.njk')).toEqual({
                     src: {
@@ -26,8 +26,8 @@ describe('WebpackPrecompiledLoader', function() {
                         obj: precompiledTemplateMock
                     },
                     path: 'foo.njk'
-                });
-            });
-        });
-    });
-});
+                })
+            })
+        })
+    })
+})

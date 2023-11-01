@@ -3,7 +3,7 @@ import "core-js/modules/es.promise.js";
 import "core-js/modules/es.array.some.js";
 import "core-js/modules/es.object.values.js";
 import nunjucks from 'nunjucks/browser/nunjucks-slim';
-import { WebpackPrecompiledLoader } from './WebpackPrecompiledLoader';
+import { WebpackPrecompiledLoader } from './WebpackPrecompiledLoader.js';
 export default function runtime(options, _ref) {
   var globals = _ref.globals,
     extensions = _ref.extensions,
